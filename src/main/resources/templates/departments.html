@@ -47,20 +47,20 @@
         .button-container {
             margin-bottom: 20px;
             display: flex;
-            justify-content: flex-end; 
+            justify-content: space-between; /* Align buttons on opposite ends */
         }
 
         .button-container a {
-            margin-left: 10px; 
+            margin-left: 10px;
         }
 
         table {
             margin-top: 20px;
-            width: 100%; 
+            width: 100%;
         }
 
         table th, table td {
-            text-align: center; 
+            text-align: center;
         }
 
         .btn-sm-custom {
@@ -70,39 +70,36 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="button-container">
-            <a href="/departments/add" class="btn btn-custom">Add New Department</a>
-        </div>
-
-        <h1>Department List</h1>
-
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="department : ${departments}">
-                    <td th:text="${department.id}"></td>
-                    <td th:text="${department.name}"></td>
-                    <td>
-                        <a th:href="@{/departments/edit/{id}(id=${department.id})}" class="btn btn-primary btn-sm">Edit</a>
-                        <form th:action="@{/departments/delete/{id}(id=${department.id})}" method="post" style="display:inline;">
-                            <input type="hidden" name="_method" value="delete"/>
-                            <button type="submit" class="btn btn-danger btn-sm btn-sm-custom" onclick="return confirm('Are you sure you want to delete this department?');">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<div class="container">
+    <div class="button-container">
+        <a href="/employees" class="btn btn-secondary">Back to Employee List</a>
+        <a href="/departments/add" class="btn btn-custom">Add New Department</a>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <h1>Department List</h1>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="department : ${departments}">
+            <td th:text="${department.id}"></td>
+            <td th:text="${department.name}"></td>
+            <td>
+                <a th:href="@{/departments/edit/{id}(id=${department.id})}" class="btn btn-primary btn-sm">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
