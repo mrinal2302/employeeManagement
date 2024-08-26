@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Edit Employee</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css" />
+<style>
+body {
+	background-color: #f4f4f4;
+	padding: 20px;
+}
+
+.container {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	max-width: 600px; 
+	margin: 0 auto; 
+}
+
+h2 {
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+.form-control {
+	border-radius: 4px;
+}
+
+.btn-custom {
+	background-color: #007bff;
+	color: #fff;
+	padding: 10px 15px;
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+.btn-custom:hover {
+	background-color: #0056b3;
+}
+
+.btn-back {
+	background-color: #6c757d;
+	color: #fff;
+	padding: 10px 15px;
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+.btn-back:hover {
+	background-color: #5a6268;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.error-message {
+	color: red;
+	text-align: center;
+	margin-top: 10px;
+}
+
+small {
+	display: block;
+	margin-top: 5px;
+	color: #6c757d;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Edit Employee</h2>
+		<form th:action="@{/update/edit}" method="post">
+			<input type="hidden" name="id" th:value="${employee.id}" />
+
+			<div class="form-group">
+				<label for="name">Name:</label> <input type="text" id="name"
+					name="name" class="form-control" th:value="${employee.name}"
+					required />
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label> <input type="text" id="email"
+					name="email" class="form-control" th:value="${employee.email}"
+					required />
+			</div>
+			<div>
+				<label for="password">Password:</label> <input type="password"
+					id="password" name="password" class="form-control" required /> <small>Enter
+					current password or new password</small>
+			</div>
+
+			<div class="form-group">
+				<label for="department">Department:</label> <input type="text"
+					id="department" name="department" class="form-control"
+					th:value="${employee.department.name}" required />
+			</div>
+			<div class="form-group text-center">
+				<button type="submit" class="btn btn-custom">Save Changes</button>
+			</div>
+			<div th:if="${error}" class="error-message">
+				<p th:text="${error}"></p>
+			</div>
+		</form>
+		<div class="text-center">
+			<a href="/employees" class="btn btn-back">Back to Employee List</a>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
